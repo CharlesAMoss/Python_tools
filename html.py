@@ -1,4 +1,5 @@
 import os
+import webbrowser
 
 project_name = raw_input("Project Name: ")
 if not os.path.exists(os.path.expanduser('~/Desktop/' + project_name)):
@@ -123,3 +124,6 @@ h3 {
 """)
 style.close
 print('main.css created')
+os.chdir(os.path.expanduser('~/Desktop/' + project_name))
+chrome_path = 'open -a /Applications/Google\ Chrome.app %s'
+webbrowser.get(chrome_path).open('file://' + os.path.realpath('index.html'))
