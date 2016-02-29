@@ -1,29 +1,31 @@
 import os
 
-# desktopFile = os.path.expanduser("~/Desktop/myfile.txt")
-
-os.makedirs(os.path.expanduser('~/Desktop/newProject'))
-os.chdir(os.path.expanduser('~/Desktop/newProject'))
-index = open('index.html', 'w+')
-index.write( """
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Test</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/main.css">
-    </head>
-    <body>
-        <div class="wrapper">
-            <h1>This is a H1<h1>
-        </div>
-        <script type="text/javascript" src="js/main.js"></script>
-    </body>
-</html> """)
-index.close
-print('index.html created')
-os.makedirs(os.path.expanduser('~/Desktop/newProject/css'))
-os.chdir(os.path.expanduser('~/Desktop/newProject/css'))
+project_name = raw_input("Project Name: ")
+if not os.path.exists(os.path.expanduser('~/Desktop/' + project_name)):
+    os.makedirs(os.path.expanduser('~/Desktop/' + project_name))
+    print('Project folder ' + project_name + ' created')
+os.chdir(os.path.expanduser('~/Desktop/' + project_name))
+if not os.path.isfile('index.html'):
+    index = open('index.html', 'w+')
+    index.write( """
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>""" + project_name + """</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="css/main.css">
+        </head>
+        <body>
+            <div class="wrapper">
+                <h1>This is the """ + project_name.title() + """ page<h1>
+            </div>
+            <script type="text/javascript" src="js/main.js"></script>
+        </body>
+    </html> """)
+    index.close
+    print('index.html created')
+os.makedirs(os.path.expanduser('~/Desktop/' + project_name + '/css'))
+os.chdir(os.path.expanduser('~/Desktop/' + project_name + '/css'))
 style = open('main.css', 'w+')
 style.write("""
 *, *:before, *:after {
