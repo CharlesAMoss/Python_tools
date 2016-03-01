@@ -9,22 +9,23 @@ if not os.path.exists(os.path.expanduser('~/Desktop/' + project_name)):
 os.chdir(os.path.expanduser('~/Desktop/' + project_name))
 if not os.path.isfile('index.html'):
     index = open('index.html', 'w+')
+    project_name_title = project_name.title()
     index.write("""
     <!DOCTYPE html>
     <html>
         <head>
-            <title>""" + project_name + """</title>
+            <title>%s</title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="stylesheet" href="css/main.css">
         </head>
         <body>
             <div class="wrapper">
-                <h1>This is the """ + project_name.title() + """ page<h1>
+                <h1>This is the %s page<h1>
             </div>
             <script type="text/javascript" src="js/main.js"></script>
         </body>
-    </html> """)
-    index.close
+    </html> """ % (project_name, project_name_title))
+    index.close()
     print('index.html created')
 if not os.path.exists(os.path.expanduser('~/Desktop/' + project_name + '/css')):
     os.makedirs(os.path.expanduser('~/Desktop/' + project_name + '/css'))
@@ -108,7 +109,7 @@ if not os.path.isfile('main.css'):
         clear: both;
     }
     """)
-    style.close
+    style.close()
     print('main.css created')
 if not os.path.exists(os.path.expanduser('~/Desktop/' + project_name + '/js')):
     os.makedirs(os.path.expanduser('~/Desktop/' + project_name + '/js'))
@@ -116,7 +117,7 @@ os.chdir(os.path.expanduser('~/Desktop/' + project_name + '/js'))
 if not os.path.isfile('main.js'):
     script = open('main.js', 'w+')
     script.write("// write some javascript")
-    script.close
+    script.close()
     print('main.js created')
 os.chdir(os.path.expanduser('~/Desktop/' + project_name))
 chrome_path = 'open -a /Applications/Google\ Chrome.app %s'
